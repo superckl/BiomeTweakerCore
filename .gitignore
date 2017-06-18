@@ -21,17 +21,7 @@ setup.bat
 src/main/resources/nei_at.cfg
 build/*
 run/*
-BiomeTweaker 1.8.8_Client.launch
-BiomeTweaker 1.8.8_Server.launch
-BiomeTweaker-1.8.8_Client.launch
-BiomeTweaker-1.8.8_Server.launch
-BiomeTweaker-1.9_Client.launch
-BiomeTweaker-1.9_Server.launch
-BiomeTweaker 1.9_Client.launch
-BiomeTweaker 1.9_Server.launch
-BiomeTweaker 1.10_Client.launch
-BiomeTweaker 1.10_Server.launch
+BiomeTweakerCore 1.11_Client.launch
+BiomeTweakerCore 1.11_Server.launch
 /.gradle/
 /build/
-BiomeTweaker 1.11_Client.launch
-BiomeTweaker 1.11_Server.launch
