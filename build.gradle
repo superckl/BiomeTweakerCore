@@ -1,0 +1,126 @@
+buildscript {
+    repositories {
+        jcenter()
+        maven {
+            name = "forge"
+            url = "http://files.minecraftforge.net/maven"
+        }
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT'
+    }
+}
+
+apply plugin: 'net.minecraftforge.gradle.forge'
+apply plugin: 'java'
+apply plugin: 'maven'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+sourceSets.main{
+    java{
+        srcDirs = ['src/main/java']
+    }
+    resources{
+        srcDirs = ['src/main/resources']
+    }
+}
+
+ext.configFile = file "build.properties"
+
+configFile.withReader {
+    def prop = new Properties()
+    prop.load(it)
+    project.ext.config = new ConfigSlurper().parse prop
+}
+
+version = config.mod_version
+group= "me.superckl.biometweakercore"
+archivesBaseName = "BiomeTweakerCore"
+
+minecraft {
+    version = config.minecraft_version + "-" + config.forge_version
+    mappings = config.mcp_mappings
+
+    replaceIn "reference/ModData.java"
+    replace "@VERSION@", "${config.mod_version}.${System.env.BUILD_NUMBER ?: 0}"
+    replace "@FINGERPRINT@", "${System.env.sha1_fingerprint ?: "N/A"}"
+
+    runDir = "eclipse"
+}
+
+version = "${config.minecraft_version}-${config.mod_version}.${System.getenv("BUILD_NUMBER") ?: 0}"
+
+dependencies {
+    compile "org.projectlombok:lombok:" + config.lombok_version
+}
+
+processResources
+{
+    // copy everything else, thats not the mcmod.info
+    from(sourceSets.main.resources.srcDirs) {
+        exclude 'mcmod.info'
+    }
+}
+
+task devJar(type: Jar, dependsOn: 'classes') {
+    from(sourceSets.main.output) {
+        include '**'
+    }
+
+    extension = 'jar'
+    classifier = 'dev'
+
+	manifest {
+        attributes 'FMLCorePlugin': config.core_path
+        attributes 'FMLCorePluginContainsFMLMod': 'false'
+    }
+}
+
+artifacts {
+  archives devJar
+}
+
+jar {
+    manifest {
+        attributes 'FMLCorePlugin': config.core_path
+        attributes 'FMLCorePluginContainsFMLMod': 'false'
+    }
+}
+
+
+tasks.build.dependsOn('signJar')
+
+ext.keystore_location = "${System.env.keystore_location ?: "."}"
+ext.keystore_password = "${System.env.keystore_password ?: ""}"
+ext.keystore_alias = "${System.env.keystore_alias ?: ""}"
+
+task signJar(dependsOn: ["reobfJar"]) {
+    inputs.dir jar.destinationDir
+    inputs.file keystore_location
+    inputs.property "keystore_alias", keystore_alias
+    inputs.property "keystore_password", keystore_password
+    outputs.dir jar.destinationDir
+
+    // only sign if the keystore exists
+    onlyIf {
+        return keystore_location != "." && keystore_password != ""
+    }
+    // the actual action.. sign the jar.
+    doLast {
+        jar.destinationDir.eachFile { file ->
+            if (!file.getPath().endsWith(".${System.env.BUILD_NUMBER ?: 0}.jar") && !file.getPath().endsWith(".${System.env.BUILD_NUMBER ?: 0}-dev.jar"))
+                return; // skip non-jars
+
+            logger.lifecycle "signing $file"
+            ant.signjar(
+                    destDir: file.getParentFile(), // same place it came from
+                    jar: file,
+                    keystore: keystore_location,
+                    alias: keystore_alias,
+                    storepass: keystore_password
+            )
+        }
+    }
+}
