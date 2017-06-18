@@ -14,6 +14,8 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 public class ModBiomeTweakerCore extends DummyModContainer{
 
+	//TODO The jar is signed with fingerprint in ModData, but there's no way to declare it.
+
 	public ModBiomeTweakerCore() {
 		super(new ModMetadata());
 		final ModMetadata meta = this.getMetadata();
