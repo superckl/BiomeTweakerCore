@@ -43,7 +43,7 @@ minecraft {
     version = config.minecraft_version + "-" + config.forge_version
     mappings = config.mcp_mappings
 
-    replaceIn "reference/ModData.java"
+    replaceIn "util/ModData.java"
     replace "@VERSION@", "${config.mod_version}.${System.env.BUILD_NUMBER ?: 0}"
     replace "@FINGERPRINT@", "${System.env.sha1_fingerprint ?: "N/A"}"
 
