@@ -14,7 +14,7 @@ public class Config {
 
 	private final File whereAreWe;
 
-	private String[] asmBlacklist;
+	private String[] asmBlacklist = new String[0];
 	private boolean removeLateAssignments;
 
 	private boolean actualFillerBlocks;
