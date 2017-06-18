@@ -24,6 +24,7 @@ public class ModBiomeTweakerCore extends DummyModContainer{
 		meta.version = ModData.VERSION;
 		meta.authorList = Lists.newArrayList("superckl");
 		meta.url = "https://minecraft.curseforge.com/projects/biometweakercore";
+		meta.parent = "biometweaker";
 	}
 
 	@Subscribe
