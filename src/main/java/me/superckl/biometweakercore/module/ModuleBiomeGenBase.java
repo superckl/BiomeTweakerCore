@@ -3,6 +3,7 @@ package me.superckl.biometweakercore.module;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.tree.AbstractInsnNode;
 import org.objectweb.asm.tree.ClassNode;
+import org.objectweb.asm.tree.FrameNode;
 import org.objectweb.asm.tree.InsnList;
 import org.objectweb.asm.tree.InsnNode;
 import org.objectweb.asm.tree.JumpInsnNode;
@@ -144,6 +145,7 @@ public class ModuleBiomeGenBase implements IClassTransformerModule{
 				list.add(Fields.SKYCOLOR.toInsnNode(Opcodes.GETFIELD));
 				list.add(new InsnNode(Opcodes.IRETURN));
 				list.add(label);
+				list.add(new FrameNode(Opcodes.F_SAME, 0, null, 0, null));
 				node.instructions.insertBefore(node.instructions.getFirst(), list);
 				BiomeTweakerCore.logger.debug("Successfully inserted sky color instructions.");
 				sky = true;
