@@ -16,7 +16,7 @@ public final class ObfNameHelper {
 	@RequiredArgsConstructor
 	public static enum Classes{
 
-		BIOMEHOOKS("me.superckl.biometweaker.BiomeHooks"),
+		BIOMEHOOKS("me.superckl.biometweakercore.util.BiomeHooks"),
 		BIOMEHELPER("me.superckl.biometweaker.util.BiomeHelper"),
 		BIOME("net.minecraft.world.biome.Biome"),
 		IBLOCKSTATE("net.minecraft.block.state.IBlockState"),
@@ -36,9 +36,9 @@ public final class ObfNameHelper {
 	public enum Methods{
 
 		BIOME_CONSTRUCTOR(Classes.BIOME, "<init>", "(Lnet/minecraft/world/biome/Biome$BiomeProperties;)V", false),
-		CALLGRASSCOLOREVENT(Classes.BIOMEHELPER, "callGrassColorEvent", "(ILnet/minecraft/world/biome/Biome;)I", false),
-		CALLFOLIAGECOLOREVENT(Classes.BIOMEHELPER, "callFoliageColorEvent", "(ILnet/minecraft/world/biome/Biome;)I", false),
-		CALLWATERCOLOREVENT(Classes.BIOMEHELPER, "callWaterColorEvent", "(ILnet/minecraft/world/biome/Biome;)I", false),
+		CALLGRASSCOLOREVENT(Classes.BIOMEHOOKS, "callGrassColorEvent", "(ILnet/minecraft/world/biome/Biome;)I", false),
+		CALLFOLIAGECOLOREVENT(Classes.BIOMEHOOKS, "callFoliageColorEvent", "(ILnet/minecraft/world/biome/Biome;)I", false),
+		CALLWATERCOLOREVENT(Classes.BIOMEHOOKS, "callWaterColorEvent", "(ILnet/minecraft/world/biome/Biome;)I", false),
 		CONTAINS(Classes.BIOMEHOOKS, "contains", "([Lnet/minecraft/block/state/IBlockState;Lnet/minecraft/block/state/IBlockState;)Z", false),
 		GENBIOMETERRAIN(Classes.BIOME, "func_180628_b", "(Lnet/minecraft/world/World;Ljava/util/Random;Lnet/minecraft/world/chunk/ChunkPrimer;IID)V", false),
 		GENTERRAINBLOCKS(Classes.BIOME, "func_180622_a", "(Lnet/minecraft/world/World;Ljava/util/Random;Lnet/minecraft/world/chunk/ChunkPrimer;IID)V", false),
