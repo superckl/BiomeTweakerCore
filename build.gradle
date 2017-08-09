@@ -74,7 +74,6 @@ task devJar(type: Jar, dependsOn: 'classes') {
 
 	manifest {
         attributes 'FMLCorePlugin': config.core_path
-        attributes 'FMLCorePluginContainsFMLMod': 'false'
     }
 }
 
@@ -85,7 +84,6 @@ artifacts {
 jar {
     manifest {
         attributes 'FMLCorePlugin': config.core_path
-        attributes 'FMLCorePluginContainsFMLMod': 'false'
     }
 }
 
