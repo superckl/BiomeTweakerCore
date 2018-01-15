@@ -24,6 +24,7 @@ public class Config {
 	private boolean foliageColor;
 	private boolean waterColor;
 	private boolean skyColor;
+	private boolean fogColor;
 
 
 	public Config(final File whereAreWe) {
@@ -42,6 +43,7 @@ public class Config {
 		this.foliageColor = this.configFile.getBoolean("Foliage Color", "ASM Tweaks", false, "Enables 'foliageColor' in the set command.");
 		this.waterColor = this.configFile.getBoolean("Water Color", "ASM Tweaks", false, "Enables 'waterColor' in the set command.");
 		this.skyColor = this.configFile.getBoolean("Sky Color", "ASM Tweaks", false, "Enables 'skyColor' in the set command.");
+		this.fogColor = this.configFile.getBoolean("Fog Color", "ASM Tweaks", false, "Enables 'fogColor' in the set command.");
 
 		this.removeLateAssignments = this.configFile.getBoolean("Remove Late Block Assignments", "ASM Tweaks", false,
 				"Enable this if you want BiomeTweaker to force topBlock and fillerBlock overrides in most biomes. This is done by using ASM"

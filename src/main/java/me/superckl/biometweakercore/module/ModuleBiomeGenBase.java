@@ -62,6 +62,12 @@ public class ModuleBiomeGenBase implements IClassTransformerModule{
 			BiomeTweakerCore.logger.debug("Successfully inserted 'skyColor' field into "+transformedName);
 			fixed++;
 		}
+		if(BiomeTweakerCore.config.isFogColor()){
+			expected++;
+			cNode.fields.add(Fields.FOGCOLOR.toNode(Opcodes.ACC_PUBLIC, -1));
+			BiomeTweakerCore.logger.debug("Successfully inserted 'fogColor' field into "+transformedName);
+			fixed++;
+		}
 		boolean sky = false;
 		for(final MethodNode node:cNode.methods)
 			if(Methods.GENBIOMETERRAIN.matches(node)){
@@ -215,6 +221,16 @@ public class ModuleBiomeGenBase implements IClassTransformerModule{
 					list.add(Fields.SKYCOLOR.toInsnNode(Opcodes.PUTFIELD));
 					node.instructions.insert(list);
 					BiomeTweakerCore.logger.debug("Successfully inserted -1 into 'skyColor'");
+					fixed++;
+				}
+				if (BiomeTweakerCore.config.isFogColor()) {
+					expected++;
+					list = new InsnList();
+					list.add(new VarInsnNode(Opcodes.ALOAD, 0));
+					list.add(new InsnNode(Opcodes.ICONST_M1));
+					list.add(Fields.FOGCOLOR.toInsnNode(Opcodes.PUTFIELD));
+					node.instructions.insert(list);
+					BiomeTweakerCore.logger.debug("Successfully inserted -1 into 'fogColor'");
 					fixed++;
 				}
 			}

@@ -1,6 +1,7 @@
 package me.superckl.biometweakercore.util;
 
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.terraingen.BiomeEvent.GetFoliageColor;
@@ -34,6 +35,16 @@ public class BiomeHooks {
 		final GetWaterColor e = new GetWaterColor(gen, color);
 		MinecraftForge.EVENT_BUS.post(e);
 		return e.getNewColor();
+	}
+	
+	public static Vec3d calcFogColor(int fogColor, float sunMod) {
+		float f1 = (fogColor >> 16)/255F;
+        float f2 = ((fogColor >> 8) & 255)/255F;
+        float f3 = (fogColor & 255)/255F;
+        f1 = f1 * (sunMod * 0.94F + 0.06F);
+        f2 = f2 * (sunMod * 0.94F + 0.06F);
+        f3 = f3 * (sunMod * 0.91F + 0.09F);
+        return new Vec3d(f1, f2, f3);
 	}
 
 }

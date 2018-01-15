@@ -17,11 +17,12 @@ public final class ObfNameHelper {
 	public static enum Classes{
 
 		BIOMEHOOKS("me.superckl.biometweakercore.util.BiomeHooks"),
-		BIOMEHELPER("me.superckl.biometweaker.util.BiomeHelper"),
+		CLIENTHELPER("me.superckl.biometweakercore.util.ClientHelper"),
 		BIOME("net.minecraft.world.biome.Biome"),
 		IBLOCKSTATE("net.minecraft.block.state.IBlockState"),
 		BLOCK("net.minecraft.block.Block"),
 		CHUNKPRIMER("net.minecraft.world.chunk.ChunkPrimer"),
+		WORLDPROVIDER("net.minecraft.world.WorldProvider"),
 		BLOCKS("net.minecraft.init.Blocks");
 
 		@Getter
@@ -40,6 +41,8 @@ public final class ObfNameHelper {
 		CALLFOLIAGECOLOREVENT(Classes.BIOMEHOOKS, "callFoliageColorEvent", "(ILnet/minecraft/world/biome/Biome;)I", false),
 		CALLWATERCOLOREVENT(Classes.BIOMEHOOKS, "callWaterColorEvent", "(ILnet/minecraft/world/biome/Biome;)I", false),
 		CONTAINS(Classes.BIOMEHOOKS, "contains", "([Lnet/minecraft/block/state/IBlockState;Lnet/minecraft/block/state/IBlockState;)Z", false),
+		CALCFOGCOLOR(Classes.BIOMEHOOKS, "calcFogColor", "(IF)Lnet/minecraft/util/math/Vec3d;", false),
+		GETBIOME(Classes.CLIENTHELPER, "getBiome", "()Lnet/minecraft/world/biome/Biome;", false),
 		GENBIOMETERRAIN(Classes.BIOME, "func_180628_b", "(Lnet/minecraft/world/World;Ljava/util/Random;Lnet/minecraft/world/chunk/ChunkPrimer;IID)V", false),
 		GENTERRAINBLOCKS(Classes.BIOME, "func_180622_a", "(Lnet/minecraft/world/World;Ljava/util/Random;Lnet/minecraft/world/chunk/ChunkPrimer;IID)V", false),
 		GETBIOMEGRASSCOLOR(Classes.BIOME, "func_180627_b", "(Lnet/minecraft/util/math/BlockPos;)I", false),
@@ -47,6 +50,7 @@ public final class ObfNameHelper {
 		GETBLOCK(Classes.IBLOCKSTATE, "func_177230_c", "()Lnet/minecraft/block/Block;", true),
 		GETDEFAULTSTATE(Classes.BLOCK, "func_176223_P", "()Lnet/minecraft/block/state/IBlockState;", false),
 		SETBLOCKSTATE(Classes.CHUNKPRIMER, "func_177855_a", "(IIILnet/minecraft/block/state/IBlockState;)V", false),
+		GETFOGCOLOR(Classes.WORLDPROVIDER, "func_76562_b", "(FF)Lnet/minecraft/util/math/Vec3d;", false),
 		GETMODDEDBIOMEGRASSCOLOR(Classes.BIOME, "getModdedBiomeGrassColor", "(I)I", false),
 		GETMODDEDBIOMEFOLIAGECOLOR(Classes.BIOME, "getModdedBiomeFoliageColor", "(I)I", false),
 		GETWATERCOLORMULTIPLIER(Classes.BIOME, "getWaterColorMultiplier", "()I", false),
@@ -93,6 +97,7 @@ public final class ObfNameHelper {
 		GRASSCOLOR(Classes.BIOME, "grassColor", "I"),
 		FOLIAGECOLOR(Classes.BIOME, "foliageColor", "I"),
 		SKYCOLOR(Classes.BIOME, "skyColor", "I"),
+		FOGCOLOR(Classes.BIOME, "fogColor", "I"),
 		BIOMENAME(Classes.BIOME, "field_76791_y", "Ljava/lang/String;"),
 		BASEHEIGHT(Classes.BIOME, "field_76748_D", "F"),
 		HEIGHTVARIATION(Classes.BIOME, "field_76749_E", "F"),

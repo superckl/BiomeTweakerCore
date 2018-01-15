@@ -47,6 +47,8 @@ public class ModBiomeTweakerCore extends DummyModContainer{
 			FMLInterModComms.sendRuntimeMessage(this, "biometweaker", "enableTweak", "foliageColor");
 		if(BiomeTweakerCore.config.isSkyColor())
 			FMLInterModComms.sendRuntimeMessage(this, "biometweaker", "enableTweak", "skyColor");
+		if(BiomeTweakerCore.config.isFogColor())
+			FMLInterModComms.sendRuntimeMessage(this, "biometweaker", "enableTweak", "fogColor");
 	}
 
 	@Override
