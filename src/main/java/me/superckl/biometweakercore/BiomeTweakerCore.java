@@ -22,7 +22,6 @@ public class BiomeTweakerCore implements IFMLLoadingPlugin{
 
 	public static final Logger logger = LogManager.getLogger(ModData.MOD_NAME);
 	public static File mcLocation;
-	public static boolean modifySuccess;
 	public static Config config;
 
 	@Override

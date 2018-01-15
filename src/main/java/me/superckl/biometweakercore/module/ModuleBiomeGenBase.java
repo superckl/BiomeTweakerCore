@@ -228,10 +228,8 @@ public class ModuleBiomeGenBase implements IClassTransformerModule{
 		else if(fixed > expected)
 			BiomeTweakerCore.logger.warn("Sucessfully patched "+transformedName+", but "+fixed+" patches were applied when we were expecting "+ expected
 					+ ". Is something else also patching this class?");
-		else{
+		else
 			BiomeTweakerCore.logger.info("Sucessfully patched "+transformedName+"! "+fixed+" patches were applied.");
-			BiomeTweakerCore.modifySuccess = true;
-		}
 		return ASMHelper.writeClassToBytes(cNode);
 	}
 
