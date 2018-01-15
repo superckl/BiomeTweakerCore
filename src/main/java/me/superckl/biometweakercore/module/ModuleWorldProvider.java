@@ -22,23 +22,23 @@ import squeek.asmhelper.me.superckl.biometweakercore.ASMHelper;
 public class ModuleWorldProvider implements IClassTransformerModule{
 
 	@Override
-	public byte[] transform(String name, String transformedName, byte[] bytes) {
+	public byte[] transform(final String name, final String transformedName, final byte[] bytes) {
 		if(!BiomeTweakerCore.config.isFogColor())
 			return bytes;
 		final ClassNode cNode = ASMHelper.readClassFromBytes(bytes);
 		BiomeTweakerCore.logger.info("Attempting to patch class "+transformedName+"...");
-		MethodNode mNode = ASMHelper.findMethodNodeOfClass(cNode, Methods.GETFOGCOLOR.getName(), Methods.GETFOGCOLOR.getDescriptor());
+		final MethodNode mNode = ASMHelper.findMethodNodeOfClass(cNode, Methods.GETFOGCOLOR.getName(), Methods.GETFOGCOLOR.getDescriptor());
 		if(mNode == null) {
 			BiomeTweakerCore.logger.error("Unable to find getFogColor method! Tweak will not be applied.");
 			return bytes;
 		}
-		AbstractInsnNode aNode = ASMHelper.find(ASMHelper.findFirstInstructionWithOpcode(mNode, Opcodes.FSTORE).getNext(),
+		final AbstractInsnNode aNode = ASMHelper.find(ASMHelper.findFirstInstructionWithOpcode(mNode, Opcodes.FSTORE).getNext(),
 				new VarInsnNode(Opcodes.FSTORE, 3));
 		if(aNode == null) {
 			BiomeTweakerCore.logger.error("Unable to find insertion site in getFogColor method! Tweak will not be applied.");
 			return bytes;
 		}
-		InsnList list = new InsnList();
+		final InsnList list = new InsnList();
 		list.add(Methods.GETBIOME.toInsnNode(Opcodes.INVOKESTATIC));
 		list.add(new FieldInsnNode(Opcodes.GETFIELD, Classes.BIOME.getInternalName(), Fields.FOGCOLOR.getName(), Fields.FOGCOLOR.getDescriptor()));
 		list.add(new InsnNode(Opcodes.ICONST_M1));
@@ -51,11 +51,11 @@ public class ModuleWorldProvider implements IClassTransformerModule{
 		list.add(new InsnNode(Opcodes.ARETURN));
 		list.add(label);
 		list.add(new FrameNode(Opcodes.F_SAME, 0, null, 0, null));
-		
+
 		mNode.instructions.insert(aNode, list);
-		
+
 		BiomeTweakerCore.logger.info("Sucessfully patched "+transformedName+"!");
-		
+
 		return ASMHelper.writeClassToBytes(cNode, ClassWriter.COMPUTE_FRAMES);
 	}
 

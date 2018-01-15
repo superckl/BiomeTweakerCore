@@ -146,7 +146,7 @@ public class ModuleBiomeGenBaseSubclass implements IClassTransformerModule{
 	}
 
 	private List<AbstractInsnNode> findReturnNodes(final InsnList instructions){
-		final List<AbstractInsnNode> list = new ArrayList<AbstractInsnNode>();
+		final List<AbstractInsnNode> list = new ArrayList<>();
 		for(int i = instructions.size()-1; i >= 0; i--)
 			if(instructions.get(i).getOpcode() == Opcodes.IRETURN)
 				list.add(instructions.get(i));

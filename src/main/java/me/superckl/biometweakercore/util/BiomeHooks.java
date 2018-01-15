@@ -36,15 +36,15 @@ public class BiomeHooks {
 		MinecraftForge.EVENT_BUS.post(e);
 		return e.getNewColor();
 	}
-	
-	public static Vec3d calcFogColor(int fogColor, float sunMod) {
+
+	public static Vec3d calcFogColor(final int fogColor, final float sunMod) {
 		float f1 = (fogColor >> 16)/255F;
-        float f2 = ((fogColor >> 8) & 255)/255F;
-        float f3 = (fogColor & 255)/255F;
-        f1 = f1 * (sunMod * 0.94F + 0.06F);
-        f2 = f2 * (sunMod * 0.94F + 0.06F);
-        f3 = f3 * (sunMod * 0.91F + 0.09F);
-        return new Vec3d(f1, f2, f3);
+		float f2 = ((fogColor >> 8) & 255)/255F;
+		float f3 = (fogColor & 255)/255F;
+		f1 = f1 * (sunMod * 0.94F + 0.06F);
+		f2 = f2 * (sunMod * 0.94F + 0.06F);
+		f3 = f3 * (sunMod * 0.91F + 0.09F);
+		return new Vec3d(f1, f2, f3);
 	}
 
 }

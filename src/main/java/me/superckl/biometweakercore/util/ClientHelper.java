@@ -14,21 +14,20 @@ public class ClientHelper {
 	public static Biome getBiome() {
 		return Minecraft.getMinecraft().world.getBiome(Minecraft.getMinecraft().player.getPosition());
 	}
-	
-    public Vec3d getFogColor(float p_76562_1_, float p_76562_2_)
-    {
-        float f = MathHelper.cos(p_76562_1_ * ((float)Math.PI * 2F)) * 2.0F + 0.5F;
-        f = MathHelper.clamp(f, 0.0F, 1.0F);
-        if(Biomes.FOREST.getWaterColorMultiplier() != -1) {
-        	return BiomeHooks.calcFogColor(Biomes.FOREST.getWaterColorMultiplier(), f);
-        }
-        float f1 = 0.7529412F;
-        float f2 = 0.84705883F;
-        float f3 = 1.0F;
-        f1 = f1 * (f * 0.94F + 0.06F);
-        f2 = f2 * (f * 0.94F + 0.06F);
-        f3 = f3 * (f * 0.91F + 0.09F);
-        return new Vec3d(f1, f2, f3);
-    }
-	
+
+	public Vec3d getFogColor(final float p_76562_1_, final float p_76562_2_)
+	{
+		float f = MathHelper.cos(p_76562_1_ * ((float)Math.PI * 2F)) * 2.0F + 0.5F;
+		f = MathHelper.clamp(f, 0.0F, 1.0F);
+		if(Biomes.FOREST.getWaterColorMultiplier() != -1)
+			return BiomeHooks.calcFogColor(Biomes.FOREST.getWaterColorMultiplier(), f);
+		float f1 = 0.7529412F;
+		float f2 = 0.84705883F;
+		float f3 = 1.0F;
+		f1 = f1 * (f * 0.94F + 0.06F);
+		f2 = f2 * (f * 0.94F + 0.06F);
+		f3 = f3 * (f * 0.91F + 0.09F);
+		return new Vec3d(f1, f2, f3);
+	}
+
 }
