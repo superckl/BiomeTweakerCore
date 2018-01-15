@@ -17,7 +17,9 @@ import squeek.asmhelper.me.superckl.biometweakercore.ObfHelper;
 @SortingIndex(1001)
 @MCVersion("1.12.2")
 @Name("BiomeTweakerCore")
-@TransformerExclusions({"me.superckl.biometweakercore", "squeek.asmhelper.me.superckl.biometweakercore"})
+@TransformerExclusions({"me.superckl.biometweakercore.BiomeTweakerCore", "me.superckl.biometweakercore.BiomeTweakerCallHook",
+	"me.superckl.biometweakercore.BiomeTweakerASMTransformer", "me.superckl.biometweakercore.util.CollectionHelper",
+	"me.superckl.biometweakercore.util.ObfNameHelper", "me.superckl.biometweakercore.module", "squeek.asmhelper.me.superckl.biometweakercore"})
 public class BiomeTweakerCore implements IFMLLoadingPlugin{
 
 	public static final Logger logger = LogManager.getLogger(ModData.MOD_NAME);
