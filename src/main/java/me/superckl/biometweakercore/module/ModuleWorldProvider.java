@@ -40,12 +40,12 @@ public class ModuleWorldProvider implements IClassTransformerModule{
 		}
 		final InsnList list = new InsnList();
 		list.add(Methods.GETBIOME.toInsnNode(Opcodes.INVOKESTATIC));
-		list.add(new FieldInsnNode(Opcodes.GETFIELD, Classes.BIOME.getInternalName(), Fields.FOGCOLOR.getName(), Fields.FOGCOLOR.getDescriptor()));
+		list.add(Fields.FOGCOLOR.toInsnNode(Opcodes.GETFIELD));
 		list.add(new InsnNode(Opcodes.ICONST_M1));
 		final LabelNode label = new LabelNode();
 		list.add(new JumpInsnNode(Opcodes.IF_ICMPEQ, label));
 		list.add(Methods.GETBIOME.toInsnNode(Opcodes.INVOKESTATIC));
-		list.add(new FieldInsnNode(Opcodes.GETFIELD, Classes.BIOME.getInternalName(), Fields.FOGCOLOR.getName(), Fields.FOGCOLOR.getDescriptor()));
+		list.add(Fields.FOGCOLOR.toInsnNode(Opcodes.GETFIELD));
 		list.add(new VarInsnNode(Opcodes.FLOAD, 3));
 		list.add(Methods.CALCFOGCOLOR.toInsnNode(Opcodes.INVOKESTATIC));
 		list.add(new InsnNode(Opcodes.ARETURN));
