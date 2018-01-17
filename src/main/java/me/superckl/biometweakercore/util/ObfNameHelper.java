@@ -23,6 +23,7 @@ public final class ObfNameHelper {
 		BLOCK("net.minecraft.block.Block"),
 		CHUNKPRIMER("net.minecraft.world.chunk.ChunkPrimer"),
 		WORLDPROVIDER("net.minecraft.world.WorldProvider"),
+		WORLD("net.minecraft.world.World"),
 		BLOCKS("net.minecraft.init.Blocks");
 
 		@Getter
@@ -51,6 +52,7 @@ public final class ObfNameHelper {
 		GETDEFAULTSTATE(Classes.BLOCK, "func_176223_P", "()Lnet/minecraft/block/state/IBlockState;", false),
 		SETBLOCKSTATE(Classes.CHUNKPRIMER, "func_177855_a", "(IIILnet/minecraft/block/state/IBlockState;)V", false),
 		GETFOGCOLOR(Classes.WORLDPROVIDER, "func_76562_b", "(FF)Lnet/minecraft/util/math/Vec3d;", false),
+		CANSNOWATBODY(Classes.WORLD, "canSnowAtBody", "(Lnet/minecraft/util/math/BlockPos;Z)Z", false),
 		GETMODDEDBIOMEGRASSCOLOR(Classes.BIOME, "getModdedBiomeGrassColor", "(I)I", false),
 		GETMODDEDBIOMEFOLIAGECOLOR(Classes.BIOME, "getModdedBiomeFoliageColor", "(I)I", false),
 		GETWATERCOLORMULTIPLIER(Classes.BIOME, "getWaterColorMultiplier", "()I", false),
@@ -98,6 +100,7 @@ public final class ObfNameHelper {
 		FOLIAGECOLOR(Classes.BIOME, "foliageColor", "I"),
 		SKYCOLOR(Classes.BIOME, "skyColor", "I"),
 		FOGCOLOR(Classes.BIOME, "fogColor", "I"),
+		GENINITIALSNOW(Classes.BIOME, "genInitialSnow", "Ljava/lang/Boolean;"),
 		BIOMENAME(Classes.BIOME, "field_76791_y", "Ljava/lang/String;"),
 		BASEHEIGHT(Classes.BIOME, "field_76748_D", "F"),
 		HEIGHTVARIATION(Classes.BIOME, "field_76749_E", "F"),

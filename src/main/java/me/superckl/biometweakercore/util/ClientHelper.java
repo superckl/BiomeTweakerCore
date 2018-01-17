@@ -7,9 +7,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class ClientHelper {
-	
+
 	public static Biome getBiome() {
 		return Minecraft.getMinecraft().world.getBiome(Minecraft.getMinecraft().player.getPosition());
 	}
-	
+
 }

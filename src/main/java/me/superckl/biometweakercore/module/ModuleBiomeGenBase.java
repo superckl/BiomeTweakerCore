@@ -68,6 +68,12 @@ public class ModuleBiomeGenBase implements IClassTransformerModule{
 			BiomeTweakerCore.logger.debug("Successfully inserted 'fogColor' field into "+transformedName);
 			fixed++;
 		}
+		if(BiomeTweakerCore.config.isInitialSnow()){
+			expected++;
+			cNode.fields.add(Fields.GENINITIALSNOW.toNode(Opcodes.ACC_PUBLIC, null));
+			BiomeTweakerCore.logger.debug("Successfully inserted 'genInitialSnow' field into "+transformedName);
+			fixed++;
+		}
 		boolean sky = false;
 		for(final MethodNode node:cNode.methods)
 			if(Methods.GENBIOMETERRAIN.matches(node)){
