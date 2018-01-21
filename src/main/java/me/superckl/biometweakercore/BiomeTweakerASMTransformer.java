@@ -5,8 +5,8 @@ import java.util.Set;
 import com.google.common.collect.Sets;
 
 import me.superckl.biometweakercore.module.IClassTransformerModule;
-import me.superckl.biometweakercore.module.ModuleBiomeGenBase;
-import me.superckl.biometweakercore.module.ModuleBiomeGenBaseSubclass;
+import me.superckl.biometweakercore.module.ModuleBiome;
+import me.superckl.biometweakercore.module.ModuleBiomeSubclass;
 import me.superckl.biometweakercore.module.ModuleWorld;
 import me.superckl.biometweakercore.module.ModuleWorldProvider;
 import me.superckl.biometweakercore.util.CollectionHelper;
@@ -17,8 +17,8 @@ public class BiomeTweakerASMTransformer implements IClassTransformer{
 	private final Set<IClassTransformerModule> modules = Sets.newIdentityHashSet();
 
 	public BiomeTweakerASMTransformer() {
-		this.registerModule(new ModuleBiomeGenBase());
-		this.registerModule(new ModuleBiomeGenBaseSubclass());
+		this.registerModule(new ModuleBiome());
+		this.registerModule(new ModuleBiomeSubclass());
 		this.registerModule(new ModuleWorldProvider());
 		this.registerModule(new ModuleWorld());
 	}

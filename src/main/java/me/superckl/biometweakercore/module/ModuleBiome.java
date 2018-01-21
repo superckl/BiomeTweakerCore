@@ -18,7 +18,7 @@ import me.superckl.biometweakercore.util.ObfNameHelper.Fields;
 import me.superckl.biometweakercore.util.ObfNameHelper.Methods;
 import squeek.asmhelper.me.superckl.biometweakercore.ASMHelper;
 
-public class ModuleBiomeGenBase implements IClassTransformerModule{
+public class ModuleBiome implements IClassTransformerModule{
 
 	@Override
 	public byte[] transform(final String name, final String transformedName, final byte[] bytes) {

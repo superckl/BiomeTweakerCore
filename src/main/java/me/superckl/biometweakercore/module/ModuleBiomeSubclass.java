@@ -22,7 +22,7 @@ import me.superckl.biometweakercore.util.ObfNameHelper.Methods;
 import net.minecraftforge.fml.common.asm.transformers.deobf.FMLDeobfuscatingRemapper;
 import squeek.asmhelper.me.superckl.biometweakercore.ASMHelper;
 
-public class ModuleBiomeGenBaseSubclass implements IClassTransformerModule{
+public class ModuleBiomeSubclass implements IClassTransformerModule{
 
 	@Override
 	public byte[] transform(final String name, final String transformedName, final byte[] basicClass) {
