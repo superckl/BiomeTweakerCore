@@ -77,7 +77,11 @@ public final class ObfNameHelper {
 		}
 
 		public boolean matches(final MethodInsnNode node){
-			return node.name.equals(this.getName()) && node.desc.equals(this.getDescriptor()) && node.owner.equals(this.clazz.getInternalName());
+			return this.matches(node, false);
+		}
+		
+		public boolean matches(final MethodInsnNode node, boolean isSubclass){
+			return node.name.equals(this.getName()) && node.desc.equals(this.getDescriptor()) && (isSubclass || node.owner.equals(this.clazz.getInternalName()));
 		}
 
 	}
