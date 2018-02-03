@@ -16,11 +16,11 @@ import org.objectweb.asm.tree.MethodNode;
 import org.objectweb.asm.tree.VarInsnNode;
 
 import me.superckl.biometweakercore.BiomeTweakerCore;
+import me.superckl.biometweakercore.util.ASMHelper;
 import me.superckl.biometweakercore.util.ObfNameHelper.Classes;
 import me.superckl.biometweakercore.util.ObfNameHelper.Fields;
 import me.superckl.biometweakercore.util.ObfNameHelper.Methods;
 import net.minecraftforge.fml.common.asm.transformers.deobf.FMLDeobfuscatingRemapper;
-import squeek.asmhelper.me.superckl.biometweakercore.ASMHelper;
 
 public class ModuleBiomeSubclass implements IClassTransformerModule{
 
