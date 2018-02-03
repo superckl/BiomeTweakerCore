@@ -100,7 +100,7 @@ public class ModuleBiomeSubclass implements IClassTransformerModule{
 											continue;
 										prevMNode = (MethodInsnNode) prevNode;
 									}
-									if(Methods.GETDEFAULTSTATE.matches(prevMNode)){
+									if(Methods.GETDEFAULTSTATE.matches(prevMNode, true)){
 										prevNode = ASMHelper.findPreviousInstruction(prevMNode);
 										if(prevNode != null && prevNode instanceof FieldInsnNode && prevNode.getOpcode() == Opcodes.GETSTATIC){
 											final FieldInsnNode prevFNode = (FieldInsnNode) prevNode;
