@@ -88,7 +88,7 @@ public class ModuleBiomeSubclass implements IClassTransformerModule{
 							if((node instanceof FieldInsnNode) == false)
 								continue;
 							final FieldInsnNode fNode = (FieldInsnNode) node;
-							if(Fields.TOPBLOCK.matches(fNode) || Fields.FILLERBLOCK.matches(fNode)){
+							if(Fields.TOPBLOCK.matches(fNode, true) || Fields.FILLERBLOCK.matches(fNode, true)){
 								AbstractInsnNode prevNode = ASMHelper.findPreviousInstruction(fNode);
 								if((prevNode != null) && (prevNode instanceof MethodInsnNode) && (prevNode.getOpcode() == Opcodes.INVOKEVIRTUAL || prevNode.getOpcode() == Opcodes.INVOKEINTERFACE)){
 									MethodInsnNode prevMNode = (MethodInsnNode) prevNode;
@@ -121,8 +121,16 @@ public class ModuleBiomeSubclass implements IClassTransformerModule{
 						}
 					while((node = ASMHelper.findNextInstructionWithOpcode(nextNode, Opcodes.PUTFIELD)) != null);
 					if(removed > 0){
-						BiomeTweakerCore.logger.warn("Found Biome subclass "+transformedName+" that was setting topBlock or fillerBlock in genTerrainBlocks! This is bad practice and breaks functionality in BiomeTweaker! "+removed+" items were removed. If this is not a vanilla biome, please let me (superckl) know.");
-						BiomeTweakerCore.logger.info("If you feel the removal of this is causing issues with a modded biome, add this class to the ASM blacklist in the config and let me know. I apologize for the wall of text, but this is important.");
+						if(name.startsWith("net.minecraft.world.biome."))
+							BiomeTweakerCore.logger.warn("Found vanilla Biome subclass "+transformedName+" that was setting topBlock"
+									+ " or fillerBlock in genTerrainBlocks!"+removed+" items were removed. If this is not a vanilla biome,"
+									+ " please let me (superckl) know.");
+						else
+							BiomeTweakerCore.logger.warn("Found Biome subclass "+transformedName+" that was setting topBlock or fillerBlock"
+									+ " in genTerrainBlocks! This is bad practice and breaks functionality in BiomeTweaker! "+removed+" items"
+									+ " were removed. If this is a vanilla biome, please let me (superckl) know.");
+						BiomeTweakerCore.logger.info("If you feel the removal of this is causing issues, add this class to"
+								+ " the ASM blacklist in the config and let me know.");
 					}
 				}
 			return ASMHelper.writeClassToBytes(cNode);

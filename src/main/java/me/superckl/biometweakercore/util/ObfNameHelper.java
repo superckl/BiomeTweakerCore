@@ -132,8 +132,13 @@ public final class ObfNameHelper {
 		}
 
 		public boolean matches(final FieldInsnNode node){
-			return node.name.equals(this.getName()) && node.desc.equals(this.getDescriptor()) && node.owner.equals(this.clazz.getInternalName());
+			return this.matches(node, false);
 		}
+
+		public boolean matches(final FieldInsnNode node, final boolean isSubclass){
+			return node.name.equals(this.getName()) && node.desc.equals(this.getDescriptor()) && (isSubclass || node.owner.equals(this.clazz.getInternalName()));
+		}
+
 
 	}
 
