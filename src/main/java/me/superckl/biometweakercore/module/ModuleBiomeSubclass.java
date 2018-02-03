@@ -93,7 +93,7 @@ public class ModuleBiomeSubclass implements IClassTransformerModule{
 								if((prevNode != null) && (prevNode instanceof MethodInsnNode) && (prevNode.getOpcode() == Opcodes.INVOKEVIRTUAL || prevNode.getOpcode() == Opcodes.INVOKEINTERFACE)){
 									MethodInsnNode prevMNode = (MethodInsnNode) prevNode;
 									//Only tests for getDefaultState...
-									if(!(Methods.GETDEFAULTSTATE.matches(prevMNode))){
+									if(!(Methods.GETDEFAULTSTATE.matches(prevMNode, true))){
 										//skip exactly three nodes to test for lines with simple withProperty calls
 										prevNode = ASMHelper.findPreviousInstruction(ASMHelper.findPreviousInstruction(ASMHelper.findPreviousInstruction(prevMNode)));
 										if(prevNode == null || prevNode instanceof MethodInsnNode == false || prevNode.getOpcode() != Opcodes.INVOKEVIRTUAL)
